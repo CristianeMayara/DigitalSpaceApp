@@ -1,4 +1,4 @@
-package com.cristiane.joyjetapp;
+package com.cristiane.joyjetapp.Activities;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +10,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+
+import com.cristiane.joyjetapp.R;
 
 public class ArticleListActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
