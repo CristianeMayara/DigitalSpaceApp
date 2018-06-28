@@ -1,0 +1,62 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/list_item_height"
+    android:background="@color/colorWhite">
+
+    <ImageView
+        android:id="@+id/iv_item_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_my_capsule" />
+
+    <ImageView
+        android:id="@+id/iv_item_left_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/list_item_horizontal_margin"
+        android:src="@mipmap/arrow_left" />
+
+    <ImageView
+        android:id="@+id/iv_item_right_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/list_item_horizontal_margin"
+        android:src="@mipmap/arrow_right" />
+
+    <TextView
+        android:id="@+id/tv_item_summary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/list_item_horizontal_margin"
+        android:layout_marginRight="@dimen/list_item_horizontal_margin"
+        android:layout_marginBottom="@dimen/list_item_margin_bottom"
+        android:ellipsize="marquee"
+        android:text="Summary"
+        android:textSize="13sp"
+        android:textColor="@color/colorWhite"
+        android:layout_alignParentBottom="true" />
+
+    <TextView
+        android:id="@+id/tv_item_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/tv_item_summary"
+        android:layout_alignParentRight="true"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_marginLeft="@dimen/list_item_horizontal_margin"
+        android:layout_marginRight="@dimen/list_item_horizontal_margin"
+        android:layout_marginBottom="@dimen/list_item_margin_bottom_title"
+        android:gravity="center_vertical"
+        android:text="Title"
+        android:textColor="@color/colorDarkGray"
+        android:textAllCaps="true"
+        android:textSize="16sp" />
+
+</RelativeLayout>
