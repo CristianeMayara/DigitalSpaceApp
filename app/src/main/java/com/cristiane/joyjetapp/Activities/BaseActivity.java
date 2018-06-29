@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.cristiane.joyjetapp.Fragments.CategoryListFragment;
+import com.cristiane.joyjetapp.Fragments.FavoriteListFragment;
 import com.cristiane.joyjetapp.Model.Article;
 import com.cristiane.joyjetapp.Model.ArticleTypeItem;
 import com.cristiane.joyjetapp.R;
@@ -58,15 +59,30 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     public static ArrayList<ArticleTypeItem> getData() {
         ArrayList<Article> articles = new ArrayList<>();
         articles.add(new Article(1, "International Space Station", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.", "Lorem ipsum dolor sit amet, consectuer adipiscing elit.', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna.", 1, false));
-        articles.add(new Article(2, "My Capsule", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.", "Lorem ipsum dolor sit amet, consectuer adipiscing elit.', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna.", 2, false));
+        articles.add(new Article(2, "My Capsule", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.", "Lorem ipsum dolor sit amet, consectuer adipiscing elit.', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna.", 2, true));
 
         ArrayList<ArticleTypeItem> data = new ArrayList<>();
-        data.add(new ArticleTypeItem("Notícias", ArticleTypeItem.Type.TITLE));
+        data.add(new ArticleTypeItem("Places", ArticleTypeItem.Type.TITLE));
         data.add(new ArticleTypeItem(articles, ArticleTypeItem.Type.CONTENT));
-        data.add(new ArticleTypeItem("Copa do Mundo", ArticleTypeItem.Type.TITLE));
+        data.add(new ArticleTypeItem("My Life", ArticleTypeItem.Type.TITLE));
         data.add(new ArticleTypeItem(articles, ArticleTypeItem.Type.CONTENT));
 
         return data;
+    }
+
+    public static ArrayList<Article> getFavorites() {
+        ArrayList<ArticleTypeItem> items = getData();
+        ArrayList<Article> favorites = new ArrayList<>();
+
+        for (ArticleTypeItem i : items) {
+            if (i.getArticles() != null) {
+                for (Article e : i.getArticles()) {
+                    if (e.isFavorite())
+                        favorites.add(e);
+                }
+            }
+        }
+        return favorites;
     }
 
     @Override
@@ -74,7 +90,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         if (drawer != null && drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            finish();
         }
     }
 
@@ -89,6 +105,9 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             getSupportActionBar().setTitle(getString(R.string.category_list_screen_title));
 
         } else if (id == R.id.nav_gallery) {
+            Fragment fragment = FavoriteListFragment.newInstance();
+            commitFragment(fragment, FavoriteListFragment.TAG);
+            getSupportActionBar().setTitle(getString(R.string.favorite_list_screen_title));
 
         } else if (id == R.id.nav_slideshow) {
 

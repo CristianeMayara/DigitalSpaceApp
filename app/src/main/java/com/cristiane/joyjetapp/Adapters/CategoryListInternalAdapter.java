@@ -67,10 +67,6 @@ public class CategoryListInternalAdapter extends RecyclerView.Adapter<CategoryLi
         Intent i = new Intent(context, ArticleActivity.class);
         i.putExtra(ArticleActivity.ARG_ARTICLE, articles.get(position));
 
-        /*Bundle bundle = new Bundle();
-        bundle.putSerializable(ARG_ARTICLE, articles.get(position));
-        i.putExtras(bundle);*/
-
         context.startActivity(i);
     }
 
