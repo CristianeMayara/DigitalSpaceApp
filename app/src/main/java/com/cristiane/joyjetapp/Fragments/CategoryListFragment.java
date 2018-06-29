@@ -47,7 +47,7 @@ public class CategoryListFragment extends Fragment {
 
     private void initComponents(View rootView) {
         layoutManager = new LinearLayoutManager(getContext());
-        rvArticleList = rootView.findViewById(R.id.rv_article_list);
+        rvArticleList = rootView.findViewById(R.id.rv_category_list);
         rvArticleList.setLayoutManager(layoutManager);
         rvArticleList.setHasFixedSize(true);
 

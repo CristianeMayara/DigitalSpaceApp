@@ -1,6 +1,8 @@
 package com.cristiane.joyjetapp.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,9 +11,11 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.cristiane.joyjetapp.Activities.ArticleActivity;
 import com.cristiane.joyjetapp.Model.Article;
 import com.cristiane.joyjetapp.R;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -40,8 +44,8 @@ public class CategoryListInternalAdapter extends RecyclerView.Adapter<CategoryLi
 
     @Override
     public void onBindViewHolder(ArticleViewHolder holder, int position) {
-//        holder.rlMainLayout.setOnClickListener(this);
-//        holder.rlMainLayout.setId(position);
+        holder.rlMainLayout.setOnClickListener(this);
+        holder.rlMainLayout.setId(position);
 
         if (articles.get(position) != null && articles.get(position).getTitle() != null)
             holder.tvTitle.setText(articles.get(position).getTitle());
@@ -58,7 +62,16 @@ public class CategoryListInternalAdapter extends RecyclerView.Adapter<CategoryLi
 
     @Override
     public void onClick(View view) {
+        int position = view.getId();
 
+        Intent i = new Intent(context, ArticleActivity.class);
+        i.putExtra(ArticleActivity.ARG_ARTICLE, articles.get(position));
+
+        /*Bundle bundle = new Bundle();
+        bundle.putSerializable(ARG_ARTICLE, articles.get(position));
+        i.putExtras(bundle);*/
+
+        context.startActivity(i);
     }
 
     class ArticleViewHolder extends RecyclerView.ViewHolder {

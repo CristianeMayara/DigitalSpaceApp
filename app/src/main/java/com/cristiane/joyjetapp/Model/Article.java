@@ -1,12 +1,15 @@
 package com.cristiane.joyjetapp.Model;
 
-import java.io.Serializable;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
 
 /**
  * Created by cristiane on 27/06/2018.
  */
 
-public class Article implements Serializable {
+public class Article implements Parcelable {
 
     private int id;
     private String title;
@@ -71,4 +74,40 @@ public class Article implements Serializable {
     public boolean isFavorite() {
         return this.isFavorite;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(this.id);
+        dest.writeString(this.title);
+        dest.writeString(this.summary);
+        dest.writeString(this.text);
+        dest.writeInt(this.category);
+        dest.writeByte(this.isFavorite ? (byte) 1 : (byte) 0);
+    }
+
+    protected Article(Parcel in) {
+        this.id = (int) in.readValue(Integer.class.getClassLoader());
+        this.title = in.readString();
+        this.summary = in.readString();
+        this.text = in.readString();
+        this.category = in.readInt();
+        this.isFavorite = in.readByte() != 0;
+    }
+
+    public static final Parcelable.Creator<Article> CREATOR = new Parcelable.Creator<Article>() {
+        @Override
+        public Article createFromParcel(Parcel source) {
+            return new Article(source);
+        }
+
+        @Override
+        public Article[] newArray(int size) {
+            return new Article[size];
+        }
+    };
 }
