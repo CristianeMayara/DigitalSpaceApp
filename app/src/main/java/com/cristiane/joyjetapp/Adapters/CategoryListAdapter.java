@@ -1,6 +1,7 @@
 package com.cristiane.joyjetapp.Adapters;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -88,6 +89,8 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
             super(itemView);
 
             tvCategoryTitle = itemView.findViewById(R.id.tv_category_title);
+            Typeface font = Typeface.createFromAsset(context.getAssets(), "fonts/Montserrat-Medium.otf");
+            tvCategoryTitle.setTypeface(font);
         }
     }
 

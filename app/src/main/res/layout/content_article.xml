@@ -21,7 +21,7 @@
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginTop="18dp"
             android:textColor="@color/colorDarkGray"
-            android:textSize="25sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:textAllCaps="true" />
 
@@ -33,7 +33,7 @@
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginTop="3dp"
             android:textColor="@color/colorBlue"
-            android:textSize="17sp"
+            android:textSize="15sp"
             android:textStyle="normal" />
 
         <TextView
@@ -45,7 +45,7 @@
             android:layout_marginTop="25dp"
             android:paddingBottom="70dp"
             android:textColor="@color/colorLightGray"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="normal"
             android:text="@string/large_text" />
     </LinearLayout>

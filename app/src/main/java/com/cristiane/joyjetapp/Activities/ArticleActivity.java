@@ -1,5 +1,6 @@
 package com.cristiane.joyjetapp.Activities;
 
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -53,7 +54,11 @@ public class ArticleActivity extends AppCompatActivity {
             }
         });
 
-        //FontsOverride.setDefaultFont(this, "sans-serif", "fonts/MontserratAlternates-ExtraBold.otf");
+        Typeface tfLight = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Light.otf");
+        Typeface tfSemiBold = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-SemiBold.otf");
+        tvText.setTypeface(tfLight);
+        tvTitle.setTypeface(tfSemiBold);
+        tvCategory.setTypeface(tfLight);
 
         setToolbar();
     }

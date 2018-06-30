@@ -2,6 +2,7 @@ package com.cristiane.joyjetapp.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -88,6 +89,11 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
             ivRightArrow = v.findViewById(R.id.iv_item_right_arrow);
             ivImage = v.findViewById(R.id.iv_item_image);
             rlMainLayout = v.findViewById(R.id.main_layout);
+
+            Typeface tfLight = Typeface.createFromAsset(context.getAssets(), "fonts/Montserrat-Light.otf");
+            Typeface tfSemiBold = Typeface.createFromAsset(context.getAssets(), "fonts/Montserrat-SemiBold.otf");
+            tvSummary.setTypeface(tfLight);
+            tvTitle.setTypeface(tfSemiBold);
         }
     }
 }
