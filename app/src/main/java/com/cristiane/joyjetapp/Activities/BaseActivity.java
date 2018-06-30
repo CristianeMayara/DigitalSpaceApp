@@ -1,15 +1,20 @@
 package com.cristiane.joyjetapp.Activities;
 
+import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.cristiane.joyjetapp.Fragments.CategoryListFragment;
 import com.cristiane.joyjetapp.Fragments.FavoriteListFragment;
@@ -37,11 +42,34 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void initComponents() {
+        dataUtil = new DataUtil(this);
+        setToolbar();
+        setDrawerMenu();
+    }
+
+    private void setToolbar() {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.mipmap.ic_menu);
 
-        dataUtil = new DataUtil(this);
-        setDrawerMenu();
+        for(int i = 0; i < toolbar.getChildCount(); i++) {
+            View view = toolbar.getChildAt(i);
+
+            if(view instanceof TextView) {
+                TextView tv = (TextView) view;
+                Typeface titleFont = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Light.otf");
+                if(tv.getText().equals(toolbar.getTitle())) {
+                    tv.setTypeface(titleFont);
+                    tv.setTextColor(getResources().getColor(R.color.colorBlue));
+                    break;
+                }
+            }
+        }
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorWhite));
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorTransparent));
+        }
     }
 
     private void setDrawerMenu() {
@@ -73,7 +101,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             Fragment fragment = CategoryListFragment.newInstance();
             commitFragment(fragment, CategoryListFragment.TAG);
             getSupportActionBar().setTitle(getString(R.string.category_list_screen_title));
-            
+
         } else if (id == R.id.nav_favorite) {
             Fragment fragment = FavoriteListFragment.newInstance();
             commitFragment(fragment, FavoriteListFragment.TAG);

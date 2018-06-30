@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:gravity="center_horizontal"
+    android:gravity="center_vertical"
     android:padding="4dp"
     android:background="@color/colorBlue">
 
@@ -12,8 +12,10 @@
         android:id="@+id/tv_category_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:textSize="18sp"
+        android:paddingStart="16dp"
+        android:paddingVertical="4dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
         android:textColor="@color/colorWhite" />
 
 </LinearLayout>

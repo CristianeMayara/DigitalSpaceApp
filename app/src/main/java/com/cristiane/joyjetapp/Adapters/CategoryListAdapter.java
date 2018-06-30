@@ -47,7 +47,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
     public void onBindViewHolder(ArticleViewHolder holder, int position) {
         if (holder.getItemViewType() == 0) {
             TitleViewHolder titleViewHolder = (TitleViewHolder) holder;
-            titleViewHolder.tvCategoryTitle.setText(articleTypeItems.get(position).getCategoryTitle());
+            titleViewHolder.tvCategoryTitle.setText(articleTypeItems.get(position).getCategoryTitle().toLowerCase());
         } else {
             ContentViewHolder contentViewHolder = (ContentViewHolder) holder;
             contentViewHolder.rvCategoryListInsider.setHasFixedSize(false);
