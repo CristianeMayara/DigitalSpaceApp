@@ -81,6 +81,10 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        TextView tv = navigationView.getHeaderView(0).findViewById(R.id.tv_navigation);
+        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Bold.otf");
+        tv.setTypeface(font);
     }
 
     @Override
