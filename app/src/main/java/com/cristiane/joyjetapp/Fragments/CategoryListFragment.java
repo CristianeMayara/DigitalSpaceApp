@@ -25,11 +25,7 @@ public class CategoryListFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
 
     public static CategoryListFragment newInstance() {
-        CategoryListFragment fragment = new CategoryListFragment();
-        Bundle bundle = new Bundle();
-//        bundle.putParcelable(ARG_USER, user);
-        fragment.setArguments(bundle);
-        return fragment;
+        return new CategoryListFragment();
     }
 
     @Override
@@ -42,6 +38,7 @@ public class CategoryListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_category_list, container, false);
         initComponents(rootView);
+
         return rootView;
     }
 
@@ -55,7 +52,7 @@ public class CategoryListFragment extends Fragment {
     }
 
     private void updateAdapter() {
-        CategoryListAdapter adapter = new CategoryListAdapter(getContext(), BaseActivity.getData());
+        CategoryListAdapter adapter = new CategoryListAdapter(getContext(), BaseActivity.dataUtil.data);
         rvArticleList.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }

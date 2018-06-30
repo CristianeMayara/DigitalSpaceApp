@@ -6,6 +6,13 @@
 
     <string name="action_settings">Settings</string>
 
+    <string name="places_category">Places</string>
+    <string name="my_life_category">My Life</string>
+    <string name="international_station_article_title">International Space Station</string>
+    <string name="my_capsule_article_title">My Capsule</string>
+    <string name="my_moon_article_title">My Moon</string>
+    <string name="article_summary">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</string>
+
     <string name="category_list_screen_title">Digital Space</string>
     <string name="favorite_list_screen_title">Favorites</string>
 

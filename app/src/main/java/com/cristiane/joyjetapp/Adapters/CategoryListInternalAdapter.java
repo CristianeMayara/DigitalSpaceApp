@@ -2,7 +2,6 @@ package com.cristiane.joyjetapp.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,6 @@ import com.cristiane.joyjetapp.Activities.ArticleActivity;
 import com.cristiane.joyjetapp.Model.Article;
 import com.cristiane.joyjetapp.R;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -52,6 +50,9 @@ public class CategoryListInternalAdapter extends RecyclerView.Adapter<CategoryLi
 
         if (articles.get(position) != null && articles.get(position).getSummary() != null)
             holder.tvSummary.setText(articles.get(position).getSummary());
+
+        if (articles.get(position) != null && articles.get(position).getImageId() != 0)
+            holder.ivImage.setImageResource(articles.get(position).getImageId());
 
     }
 

@@ -1,8 +1,11 @@
 package com.cristiane.joyjetapp.Activities;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +24,7 @@ public class ArticleActivity extends AppCompatActivity {
     private TextView tvCategory;
     private TextView tvText;
     private ImageView ivImage;
+    private ImageView ivStar;
     private Article article;
 
     @Override
@@ -30,6 +34,7 @@ public class ArticleActivity extends AppCompatActivity {
 
         initComponents();
         setArguments();
+        updateStarColor();
     }
 
     private void initComponents() {
@@ -37,6 +42,15 @@ public class ArticleActivity extends AppCompatActivity {
         tvCategory = findViewById(R.id.tv_article_category);
         tvText = findViewById(R.id.tv_article_text);
         ivImage = findViewById(R.id.iv_article_image);
+        ivStar = findViewById(R.id.iv_toolbar_star);
+        ivStar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toggleFavorite();
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
 
         //FontsOverride.setDefaultFont(this, "sans-serif", "fonts/MontserratAlternates-ExtraBold.otf");
 
@@ -49,8 +63,6 @@ public class ArticleActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayUseLogoEnabled(true);
-        getSupportActionBar().setLogo(R.mipmap.ic_star);
     }
 
     private void setArguments() {
@@ -59,6 +71,7 @@ public class ArticleActivity extends AppCompatActivity {
             tvTitle.setText(article.getTitle().toUpperCase());
             tvCategory.setText(getCategoryName(article.getCategory()).toLowerCase());
             tvText.setText(article.getText());
+            ivImage.setImageResource(article.getImageId());
         }
     }
 
@@ -77,5 +90,18 @@ public class ArticleActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    private void toggleFavorite() {
+        BaseActivity.dataUtil.toggleFavorite(article.getId());
+        article.setFavorite(!article.isFavorite());
+        updateStarColor();
+    }
+
+    private void updateStarColor() {
+        if(article.isFavorite())
+            ivStar.setColorFilter(ContextCompat.getColor(this, R.color.colorYellow));
+        else
+            ivStar.setColorFilter(ContextCompat.getColor(this, R.color.colorWhite));
     }
 }

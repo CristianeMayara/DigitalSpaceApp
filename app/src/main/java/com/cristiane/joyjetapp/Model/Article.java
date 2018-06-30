@@ -3,8 +3,6 @@ package com.cristiane.joyjetapp.Model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.ArrayList;
-
 /**
  * Created by cristiane on 27/06/2018.
  */
@@ -16,14 +14,16 @@ public class Article implements Parcelable {
     private String summary;
     private String text;
     private int category;
+    private int imageId;
     private boolean isFavorite;
 
-    public Article(int id, String title, String summary, String text, int category, boolean isFavorite) {
+    public Article(int id, String title, String summary, String text, int imageId, int category, boolean isFavorite) {
         this.id = id;
         this.title = title;
         this.summary = summary;
         this.text = text;
         this.category = category;
+        this.imageId = imageId;
         this.isFavorite = isFavorite;
     }
 
@@ -67,6 +67,14 @@ public class Article implements Parcelable {
         return this.category;
     }
 
+    public void setImageId(int value) {
+        this.imageId = value;
+    }
+
+    public int getImageId() {
+        return this.imageId;
+    }
+
     public void setFavorite(boolean value) {
         this.isFavorite = value;
     }
@@ -87,6 +95,7 @@ public class Article implements Parcelable {
         dest.writeString(this.summary);
         dest.writeString(this.text);
         dest.writeInt(this.category);
+        dest.writeInt(this.imageId);
         dest.writeByte(this.isFavorite ? (byte) 1 : (byte) 0);
     }
 
@@ -96,6 +105,7 @@ public class Article implements Parcelable {
         this.summary = in.readString();
         this.text = in.readString();
         this.category = in.readInt();
+        this.imageId = in.readInt();
         this.isFavorite = in.readByte() != 0;
     }
 

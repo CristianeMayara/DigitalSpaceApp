@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cristiane.joyjetapp.Activities.BaseActivity;
-import com.cristiane.joyjetapp.Adapters.CategoryListAdapter;
 import com.cristiane.joyjetapp.Adapters.FavoriteListAdapter;
 import com.cristiane.joyjetapp.R;
 
@@ -51,7 +50,7 @@ public class FavoriteListFragment extends Fragment {
     }
 
     private void updateAdapter() {
-        FavoriteListAdapter adapter = new FavoriteListAdapter(getContext(), BaseActivity.getFavorites());
+        FavoriteListAdapter adapter = new FavoriteListAdapter(getContext(), BaseActivity.dataUtil.getFavorites());
         rvFavoriteList.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
