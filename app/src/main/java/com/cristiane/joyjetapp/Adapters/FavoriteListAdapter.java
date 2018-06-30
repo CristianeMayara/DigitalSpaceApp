@@ -51,6 +51,9 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
         if (articles.get(position) != null && articles.get(position).getSummary() != null)
             holder.tvSummary.setText(articles.get(position).getSummary());
 
+        if (articles.get(position) != null && articles.get(position).getImageId() != 0)
+            holder.ivImage.setImageResource(articles.get(position).getImageId());
+
     }
 
     @Override
