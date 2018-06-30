@@ -6,17 +6,27 @@
 
     <string name="action_settings">Settings</string>
 
+    <!-- Screens Title -->
+    <string name="category_list_screen_title">Digital Space</string>
+    <string name="favorite_list_screen_title">Favorites</string>
+    <string name="title_activity_article">ArticleActivity</string>
+
+    <!-- Drawer Menu -->
+    <string name="category_list_menu">Home</string>
+    <string name="favorite_list_menu">Favorites</string>
+    <string name="menu_name">JOYJET</string>
+
+    <!-- Categories Name -->
     <string name="places_category">Places</string>
     <string name="my_life_category">My Life</string>
+
+    <!-- Articles Name -->
     <string name="international_station_article_title">International Space Station</string>
     <string name="my_capsule_article_title">My Capsule</string>
     <string name="my_moon_article_title">My Moon</string>
+
+    <!-- Articles Text -->
     <string name="article_summary">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</string>
-
-    <string name="category_list_screen_title">Digital Space</string>
-    <string name="favorite_list_screen_title">Favorites</string>
-
-    <string name="title_activity_article">ArticleActivity</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

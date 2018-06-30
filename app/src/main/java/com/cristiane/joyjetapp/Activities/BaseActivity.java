@@ -69,24 +69,15 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_category) {
             Fragment fragment = CategoryListFragment.newInstance();
             commitFragment(fragment, CategoryListFragment.TAG);
             getSupportActionBar().setTitle(getString(R.string.category_list_screen_title));
-
-        } else if (id == R.id.nav_gallery) {
+            
+        } else if (id == R.id.nav_favorite) {
             Fragment fragment = FavoriteListFragment.newInstance();
             commitFragment(fragment, FavoriteListFragment.TAG);
             getSupportActionBar().setTitle(getString(R.string.favorite_list_screen_title));
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
         }
 
         drawer.closeDrawer(GravityCompat.START);
