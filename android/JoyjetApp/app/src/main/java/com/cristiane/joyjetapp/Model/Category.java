@@ -1,5 +1,7 @@
 package com.cristiane.joyjetapp.Model;
 
+import java.util.List;
+
 /**
  * Created by cristiane on 27/06/2018.
  */
@@ -7,11 +9,12 @@ package com.cristiane.joyjetapp.Model;
 public class Category {
 
     private int id;
-    private String name;
+    private String title;
+    private List<Article> items;
 
-    public Category(int id, String name) {
+    public Category(int id, String title) {
         this.id = id;
-        this.name = name;
+        this.title = title;
     }
 
     public void setId(int id) {
@@ -22,11 +25,19 @@ public class Category {
         return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
+    }
+
+    public List<Article> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Article> items) {
+        this.items = items;
     }
 }
