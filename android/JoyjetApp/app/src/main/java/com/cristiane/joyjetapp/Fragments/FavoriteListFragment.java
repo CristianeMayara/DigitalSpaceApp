@@ -21,7 +21,7 @@ public class FavoriteListFragment extends Fragment {
 
     public static final String TAG = FavoriteListFragment.class.getSimpleName();
     private RecyclerView rvFavoriteList;
-    private RecyclerView.Adapter adapter;
+    private FavoriteListAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
 
     public static FavoriteListFragment newInstance() {
@@ -41,17 +41,21 @@ public class FavoriteListFragment extends Fragment {
         return rootView;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateAdapter();
+    }
+
     private void initComponents(View rootView) {
         layoutManager = new LinearLayoutManager(getContext());
         rvFavoriteList = rootView.findViewById(R.id.rv_category_list);
         rvFavoriteList.setLayoutManager(layoutManager);
         rvFavoriteList.setHasFixedSize(true);
-
-        updateAdapter();
     }
 
     private void updateAdapter() {
-        FavoriteListAdapter adapter = new FavoriteListAdapter(getContext(), BaseActivity.dataUtil.getFavorites());
+        adapter = new FavoriteListAdapter(getContext(), BaseActivity.dataUtil.getFavorites());
         rvFavoriteList.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
