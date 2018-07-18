@@ -18,7 +18,7 @@ public class DataUtil {
 
     public DataUtil(Context context) {
         this.context = context;
-        //this.data = getData();
+        this.data = getData();
     }
 
     public ArrayList<ArticleTypeItem> getData() {
