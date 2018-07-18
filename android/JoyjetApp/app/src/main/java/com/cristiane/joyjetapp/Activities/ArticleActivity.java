@@ -1,15 +1,19 @@
 package com.cristiane.joyjetapp.Activities;
 
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cristiane.joyjetapp.Model.Article;
 import com.cristiane.joyjetapp.R;
@@ -20,14 +24,15 @@ import com.cristiane.joyjetapp.R;
 
 public class ArticleActivity extends AppCompatActivity {
 
-    public static final String TAG = "ArticleActivity";
+    public static final String TAG = ArticleActivity.class.getSimpleName();
     public static final String ARG_ARTICLE = "arg_article";
+
     private TextView tvTitle;
     private TextView tvCategory;
     private TextView tvText;
     private ImageView ivImage;
-    private ImageView ivStar;
     private Article article;
+    private Drawable starDrawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +41,6 @@ public class ArticleActivity extends AppCompatActivity {
 
         initComponents();
         setArguments();
-        updateStarColor();
     }
 
     private void initComponents() {
@@ -44,15 +48,6 @@ public class ArticleActivity extends AppCompatActivity {
         tvCategory = findViewById(R.id.tv_article_category);
         tvText = findViewById(R.id.tv_article_text);
         ivImage = findViewById(R.id.iv_article_image);
-        ivStar = findViewById(R.id.iv_toolbar_star);
-        ivStar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                toggleFavorite();
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         Typeface tfLight = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Light.otf");
         Typeface tfSemiBold = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-SemiBold.otf");
@@ -103,16 +98,52 @@ public class ArticleActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_article, menu);
+
+        starDrawable = menu.getItem(0).getIcon();
+        if(starDrawable != null) starDrawable.mutate();
+        updateStarColor();
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_favorite:
+                toggleFavorite();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     private void toggleFavorite() {
         BaseActivity.dataUtil.toggleFavorite(article.getId());
+        if (article.isFavorite())
+            showRemovedSuccessfully();
+        else
+            showMarkedSuccessfully();
+
         article.setFavorite(!article.isFavorite());
         updateStarColor();
     }
 
     private void updateStarColor() {
-        if(article.isFavorite())
-            ivStar.setColorFilter(ContextCompat.getColor(this, R.color.colorYellow));
+        if (article.isFavorite())
+            starDrawable.setColorFilter(ContextCompat.getColor(this, R.color.colorYellow), PorterDuff.Mode.SRC_ATOP);
         else
-            ivStar.setColorFilter(ContextCompat.getColor(this, R.color.colorWhite));
+            starDrawable.setColorFilter(ContextCompat.getColor(this, R.color.colorWhite), PorterDuff.Mode.SRC_ATOP);
+    }
+
+    private void showMarkedSuccessfully() {
+        Toast.makeText(this, getString(R.string.successfully_marked), Toast.LENGTH_SHORT).show();
+    }
+
+    private void showRemovedSuccessfully() {
+        Toast.makeText(this, getString(R.string.successfully_removed), Toast.LENGTH_SHORT).show();
     }
 }

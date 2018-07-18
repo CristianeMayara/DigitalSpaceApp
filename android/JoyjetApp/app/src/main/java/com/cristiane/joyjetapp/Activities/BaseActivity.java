@@ -23,7 +23,7 @@ import com.cristiane.joyjetapp.Util.DataUtil;
 
 public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    public static final String TAG = "BaseActivity";
+    public static final String TAG = BaseActivity.class.getSimpleName();
 
     private Toolbar toolbar;
     DrawerLayout drawer;

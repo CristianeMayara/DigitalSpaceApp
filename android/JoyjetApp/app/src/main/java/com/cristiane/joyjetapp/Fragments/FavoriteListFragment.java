@@ -18,7 +18,8 @@ import com.cristiane.joyjetapp.R;
  */
 
 public class FavoriteListFragment extends Fragment {
-    public static final String TAG = "CategoryListFragment";
+
+    public static final String TAG = FavoriteListFragment.class.getSimpleName();
     private RecyclerView rvFavoriteList;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;

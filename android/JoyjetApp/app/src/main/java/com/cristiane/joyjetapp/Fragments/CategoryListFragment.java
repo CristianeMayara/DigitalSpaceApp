@@ -19,7 +19,7 @@ import com.cristiane.joyjetapp.R;
 
 public class CategoryListFragment extends Fragment {
 
-    public static final String TAG = "CategoryListFragment";
+    public static final String TAG = CategoryListFragment.class.getSimpleName();
     private RecyclerView rvArticleList;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
