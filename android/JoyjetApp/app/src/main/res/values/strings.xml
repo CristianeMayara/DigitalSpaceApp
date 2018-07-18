@@ -117,5 +117,6 @@
     <string name="successfully_marked">Article marked as a favorite!</string>
     <string name="successfully_removed">Removed from favorites</string>
     <string name="no_favorites">Your favorites will be shown here</string>
+    <string name="no_articles">Nothing in the news feed</string>
 
 </resources>

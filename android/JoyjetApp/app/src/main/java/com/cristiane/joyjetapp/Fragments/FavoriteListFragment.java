@@ -66,7 +66,7 @@ public class FavoriteListFragment extends Fragment {
         rvFavoriteList.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
-        if (data.isEmpty()) {
+        if (data == null || data.isEmpty()) {
             rvFavoriteList.setVisibility(View.GONE);
             tvNoFavorites.setVisibility(View.VISIBLE);
         }
