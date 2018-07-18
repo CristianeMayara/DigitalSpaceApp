@@ -3,6 +3,9 @@ package com.cristiane.joyjetapp.Model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by cristiane on 27/06/2018.
  */
@@ -11,19 +14,17 @@ public class Article implements Parcelable {
 
     private int id;
     private String title;
-    private String summary;
-    private String text;
+    private String description;
+    private List<String> galery;
     private int category;
-    private int imageId;
     private boolean isFavorite;
 
-    public Article(int id, String title, String summary, String text, int imageId, int category, boolean isFavorite) {
+    public Article(int id, String title, String description, List<String> galery, int category, boolean isFavorite) {
         this.id = id;
         this.title = title;
-        this.summary = summary;
-        this.text = text;
+        this.description = description;
+        this.galery = galery;
         this.category = category;
-        this.imageId = imageId;
         this.isFavorite = isFavorite;
     }
 
@@ -43,20 +44,12 @@ public class Article implements Parcelable {
         return this.title;
     }
 
-    public void setSummary(String value) {
-        this.summary = value;
+    public void setDescription(String value) {
+        this.description = value;
     }
 
-    public String getSummary() {
-        return this.summary;
-    }
-
-    public void setText(String value) {
-        this.text = value;
-    }
-
-    public String getText() {
-        return this.text;
+    public String getDescription() {
+        return this.description;
     }
 
     public void setCategory(int value) {
@@ -67,12 +60,12 @@ public class Article implements Parcelable {
         return this.category;
     }
 
-    public void setImageId(int value) {
-        this.imageId = value;
+    public List<String> getGalery() {
+        return galery;
     }
 
-    public int getImageId() {
-        return this.imageId;
+    public void setGalery(List<String> galery) {
+        this.galery = galery;
     }
 
     public void setFavorite(boolean value) {
@@ -92,20 +85,19 @@ public class Article implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(this.id);
         dest.writeString(this.title);
-        dest.writeString(this.summary);
-        dest.writeString(this.text);
+        dest.writeString(this.description);
+        dest.writeList(this.galery);
         dest.writeInt(this.category);
-        dest.writeInt(this.imageId);
         dest.writeByte(this.isFavorite ? (byte) 1 : (byte) 0);
     }
 
     protected Article(Parcel in) {
         this.id = (int) in.readValue(Integer.class.getClassLoader());
         this.title = in.readString();
-        this.summary = in.readString();
-        this.text = in.readString();
+        this.description = in.readString();
+        this.galery = new ArrayList<>();
+        in.readList(this.galery, String.class.getClassLoader());
         this.category = in.readInt();
-        this.imageId = in.readInt();
         this.isFavorite = in.readByte() != 0;
     }
 

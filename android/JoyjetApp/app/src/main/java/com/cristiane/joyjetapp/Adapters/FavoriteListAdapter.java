@@ -49,11 +49,11 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
         if (articles.get(position) != null && articles.get(position).getTitle() != null)
             holder.tvTitle.setText(articles.get(position).getTitle());
 
-        if (articles.get(position) != null && articles.get(position).getSummary() != null)
-            holder.tvSummary.setText(articles.get(position).getSummary());
+        if (articles.get(position) != null && articles.get(position).getDescription() != null)
+            holder.tvSummary.setText(articles.get(position).getDescription());
 
-        if (articles.get(position) != null && articles.get(position).getImageId() != 0)
-            holder.ivImage.setImageResource(articles.get(position).getImageId());
+//        if (articles.get(position) != null && articles.get(position).getImageId() != 0)
+//            holder.ivImage.setImageResource(articles.get(position).getImageId());
 
     }
 

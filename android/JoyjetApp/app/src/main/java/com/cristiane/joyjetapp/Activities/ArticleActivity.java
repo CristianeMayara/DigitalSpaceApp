@@ -76,8 +76,8 @@ public class ArticleActivity extends AppCompatActivity {
             article = getIntent().getExtras().getParcelable(ARG_ARTICLE);
             tvTitle.setText(article.getTitle().toUpperCase());
             tvCategory.setText(getCategoryName(article.getCategory()).toLowerCase());
-            tvText.setText(article.getText());
-            ivImage.setImageResource(article.getImageId());
+            tvText.setText(article.getDescription());
+//            ivImage.setImageResource(article.getImageId());
         }
     }
 

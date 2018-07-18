@@ -23,11 +23,11 @@ public class DataUtil {
 
     public ArrayList<ArticleTypeItem> getData() {
         ArrayList<Article> articles = new ArrayList<>();
-        articles.add(new Article(1, context.getString(R.string.international_station_article_title), context.getString(R.string.article_summary), context.getString(R.string.large_text), R.drawable.img_space_station, 1, true));
+        articles.add(new Article(1, context.getString(R.string.international_station_article_title), context.getString(R.string.large_text), new ArrayList<String>(), 1, true));
 
         ArrayList<Article> articles2 = new ArrayList<>();
-        articles2.add(new Article(2, context.getString(R.string.my_capsule_article_title), context.getString(R.string.article_summary), context.getString(R.string.large_text), R.drawable.img_my_capsule, 2, false));
-        articles2.add(new Article(3, context.getString(R.string.my_moon_article_title), context.getString(R.string.article_summary), context.getString(R.string.large_text), R.drawable.img_my_moon, 2, true));
+        articles2.add(new Article(2, context.getString(R.string.my_capsule_article_title), context.getString(R.string.large_text), new ArrayList<String>(), 2, false));
+        articles2.add(new Article(3, context.getString(R.string.my_moon_article_title), context.getString(R.string.large_text), new ArrayList<String>(), 2, true));
 
         ArrayList<ArticleTypeItem> data = new ArrayList<>();
         data.add(new ArticleTypeItem(context.getString(R.string.places_category), ArticleTypeItem.Type.TITLE));
