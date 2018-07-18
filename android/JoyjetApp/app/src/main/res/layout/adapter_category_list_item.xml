@@ -40,7 +40,8 @@
         android:layout_marginLeft="@dimen/list_item_horizontal_margin"
         android:layout_marginRight="@dimen/list_item_horizontal_margin"
         android:layout_marginBottom="@dimen/list_item_margin_bottom"
-        android:ellipsize="marquee"
+        android:maxLines="2"
+        android:ellipsize="end"
         android:textSize="13sp"
         android:textColor="@color/colorWhite"
         android:layout_alignParentBottom="true" />
