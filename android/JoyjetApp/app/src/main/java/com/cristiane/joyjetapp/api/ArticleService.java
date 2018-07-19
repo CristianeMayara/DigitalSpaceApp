@@ -3,12 +3,11 @@ package com.cristiane.joyjetapp.api;
 import com.cristiane.joyjetapp.Model.Category;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
 
-import static com.cristiane.joyjetapp.Util.UrlConstants.URL_GET_ARTICLES;
+import static com.cristiane.joyjetapp.Util.UrlConstants.URL_GET_CATEGORIES;
 
 /**
  * Created by cristiane on 18/07/2018.
@@ -16,7 +15,7 @@ import static com.cristiane.joyjetapp.Util.UrlConstants.URL_GET_ARTICLES;
 
 public interface ArticleService {
 
-    @GET(URL_GET_ARTICLES)
-    Call<ArrayList<Category>> getArticles();
+    @GET(URL_GET_CATEGORIES)
+    Call<ArrayList<Category>> getCategories();
 
 }

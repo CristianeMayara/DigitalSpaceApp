@@ -29,7 +29,7 @@ public class DataUtil {
     }
 
     private void findAllArticles() {
-        retrofit2.Call<ArrayList<Category>> call = RetrofitInitializer.createService(ArticleService.class).getArticles();
+        retrofit2.Call<ArrayList<Category>> call = RetrofitInitializer.createService(ArticleService.class).getCategories();
         call.enqueue(new Callback<ArrayList<Category>>() {
             @Override
             public void onResponse(@NonNull retrofit2.Call<ArrayList<Category>> call, @NonNull Response<ArrayList<Category>> response) {
@@ -79,8 +79,8 @@ public class DataUtil {
 
     /*public void toggleFavorite(int articleId) {
         for (ArticleTypeItem i : data) {
-            if (i.getArticles() != null) {
-                for (Article e : i.getArticles()) {
+            if (i.getCategories() != null) {
+                for (Article e : i.getCategories()) {
 
                     if (e.getId() == articleId) {
                         e.setFavorite(!e.isFavorite());
