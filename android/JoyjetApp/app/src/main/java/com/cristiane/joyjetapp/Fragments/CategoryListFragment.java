@@ -1,6 +1,11 @@
 package com.cristiane.joyjetapp.Fragments;
 
+import android.arch.lifecycle.LifecycleRegistry;
+import android.arch.lifecycle.LifecycleRegistryOwner;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,10 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.cristiane.joyjetapp.Activities.BaseActivity;
 import com.cristiane.joyjetapp.Adapters.CategoryListAdapter;
 import com.cristiane.joyjetapp.Model.ArticleTypeItem;
 import com.cristiane.joyjetapp.R;
+import com.cristiane.joyjetapp.viewmodel.CategoryListViewModel;
 
 import java.util.ArrayList;
 
@@ -21,7 +26,7 @@ import java.util.ArrayList;
  * Created by cristiane on 28/06/2018.
  */
 
-public class CategoryListFragment extends Fragment {
+public class CategoryListFragment extends Fragment implements LifecycleRegistryOwner {
 
     public static final String TAG = CategoryListFragment.class.getSimpleName();
     private RecyclerView rvArticleList;
@@ -29,20 +34,30 @@ public class CategoryListFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private TextView tvNoArticles;
 
+    private CategoryListViewModel viewmodel;
+    private final LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
 
     public static CategoryListFragment newInstance() {
         return new CategoryListFragment();
     }
 
+    @NonNull
+    @Override
+    public LifecycleRegistry getLifecycle() {
+        return this.lifecycleRegistry;
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initViewModel();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_category_list, container, false);
+
         initComponents(rootView);
 
         return rootView;
@@ -54,12 +69,26 @@ public class CategoryListFragment extends Fragment {
         rvArticleList = rootView.findViewById(R.id.rv_category_list);
         rvArticleList.setLayoutManager(layoutManager);
         rvArticleList.setHasFixedSize(true);
-
-        updateAdapter();
     }
 
-    private void updateAdapter() {
-        ArrayList<ArticleTypeItem> data = BaseActivity.dataUtil.data;
+    private void initViewModel() {
+        viewmodel = ViewModelProviders.of(this).get(CategoryListViewModel.class);
+        attachObserver(viewmodel);
+    }
+
+    private void attachObserver(CategoryListViewModel viewModel) {
+        viewModel.getData().observe(this, new Observer<ArrayList<ArticleTypeItem>>() {
+            @Override
+            public void onChanged(@Nullable ArrayList<ArticleTypeItem> data) {
+                if (data != null) {
+                    updateAdapter(data);
+                }
+            }
+        });
+    }
+
+    private void updateAdapter(ArrayList<ArticleTypeItem> data) {
+        //ArrayList<ArticleTypeItem> data = BaseActivity.dataUtil.data;
 
         adapter = new CategoryListAdapter(getContext(), data);
         rvArticleList.setAdapter(adapter);
