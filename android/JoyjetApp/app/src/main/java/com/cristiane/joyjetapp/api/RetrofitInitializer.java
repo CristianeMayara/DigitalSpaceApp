@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitInitializer {
 
-    private static final String API_BASE_URL = "https://cdn.joyjet.com/tech-interview";
+    private static final String API_BASE_URL = "https://cdn.joyjet.com";
 
     private static Retrofit.Builder builder = new Retrofit.Builder()
             .baseUrl(API_BASE_URL)

@@ -122,7 +122,7 @@ public class ArticleActivity extends AppCompatActivity {
     }
 
     private void toggleFavorite() {
-        BaseActivity.dataUtil.toggleFavorite(article.getId());
+        //BaseActivity.dataUtil.toggleFavorite(article.getId());
         if (article.isFavorite())
             showRemovedSuccessfully();
         else

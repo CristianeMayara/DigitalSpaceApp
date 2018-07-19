@@ -12,28 +12,18 @@ import java.util.List;
 
 public class Article implements Parcelable {
 
-    private int id;
     private String title;
     private String description;
     private List<String> galery;
     private int category;
     private boolean isFavorite;
 
-    public Article(int id, String title, String description, List<String> galery, int category, boolean isFavorite) {
-        this.id = id;
+    public Article(String title, String description, List<String> galery, int category, boolean isFavorite) {
         this.title = title;
         this.description = description;
         this.galery = galery;
         this.category = category;
         this.isFavorite = isFavorite;
-    }
-
-    public void setId(int value) {
-        this.id = value;
-    }
-
-    public int getId() {
-        return this.id;
     }
 
     public void setTitle(String value) {
@@ -83,7 +73,6 @@ public class Article implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(this.id);
         dest.writeString(this.title);
         dest.writeString(this.description);
         dest.writeList(this.galery);
@@ -92,7 +81,6 @@ public class Article implements Parcelable {
     }
 
     protected Article(Parcel in) {
-        this.id = (int) in.readValue(Integer.class.getClassLoader());
         this.title = in.readString();
         this.description = in.readString();
         this.galery = new ArrayList<>();

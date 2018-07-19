@@ -1,7 +1,8 @@
 package com.cristiane.joyjetapp.api;
 
-import com.cristiane.joyjetapp.Model.Article;
+import com.cristiane.joyjetapp.Model.Category;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -16,6 +17,6 @@ import static com.cristiane.joyjetapp.Util.UrlConstants.URL_GET_ARTICLES;
 public interface ArticleService {
 
     @GET(URL_GET_ARTICLES)
-    Call<List<Article>> getArticles();
+    Call<ArrayList<Category>> getArticles();
 
 }
