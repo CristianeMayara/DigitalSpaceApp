@@ -1,10 +1,16 @@
 package com.cristiane.joyjetapp.Activities;
 
+import android.arch.lifecycle.LifecycleRegistry;
+import android.arch.lifecycle.LifecycleRegistryOwner;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,12 +23,14 @@ import android.widget.Toast;
 
 import com.cristiane.joyjetapp.Model.Article;
 import com.cristiane.joyjetapp.R;
+import com.cristiane.joyjetapp.viewmodel.ArticleViewModel;
+import com.cristiane.joyjetapp.viewmodel.CategoryListViewModel;
 
 /**
  * Created by cristiane on 28/06/2018.
  */
 
-public class ArticleActivity extends AppCompatActivity {
+public class ArticleActivity extends AppCompatActivity implements LifecycleRegistryOwner {
 
     public static final String TAG = ArticleActivity.class.getSimpleName();
     public static final String ARG_ARTICLE = "arg_article";
@@ -34,6 +42,15 @@ public class ArticleActivity extends AppCompatActivity {
     private Article article;
     private Drawable starDrawable;
 
+    private ArticleViewModel viewmodel;
+    private final LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
+
+    @NonNull
+    @Override
+    public LifecycleRegistry getLifecycle() {
+        return this.lifecycleRegistry;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +58,7 @@ public class ArticleActivity extends AppCompatActivity {
 
         initComponents();
         setArguments();
+        initViewModel();
     }
 
     private void initComponents() {
@@ -92,6 +110,19 @@ public class ArticleActivity extends AppCompatActivity {
         }
     }
 
+    private void initViewModel() {
+        viewmodel = ViewModelProviders.of(this).get(ArticleViewModel.class);
+        attachObserver(viewmodel);
+    }
+
+    private void attachObserver(ArticleViewModel viewModel) {
+        viewModel.getArticle().observe(this, new Observer<Article>() {
+            @Override
+            public void onChanged(@Nullable Article article) {
+            }
+        });
+    }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
@@ -105,7 +136,11 @@ public class ArticleActivity extends AppCompatActivity {
 
         starDrawable = menu.getItem(0).getIcon();
         if(starDrawable != null) starDrawable.mutate();
-        updateStarColor();
+
+        if (article.isFavorite())
+            setYellowColor();
+        else
+            setWhiteColor();
 
         return true;
     }
@@ -114,36 +149,26 @@ public class ArticleActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_favorite:
-                toggleFavorite();
+                viewmodel.toggleFavorite(this, article);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    private void toggleFavorite() {
-        //BaseActivity.dataUtil.toggleFavorite(article.getId());
-        if (article.isFavorite())
-            showRemovedSuccessfully();
-        else
-            showMarkedSuccessfully();
-
-        article.setFavorite(!article.isFavorite());
-        updateStarColor();
+    public void setWhiteColor() {
+        starDrawable.setColorFilter(ContextCompat.getColor(this, R.color.colorWhite), PorterDuff.Mode.SRC_ATOP);
     }
 
-    private void updateStarColor() {
-        if (article.isFavorite())
-            starDrawable.setColorFilter(ContextCompat.getColor(this, R.color.colorYellow), PorterDuff.Mode.SRC_ATOP);
-        else
-            starDrawable.setColorFilter(ContextCompat.getColor(this, R.color.colorWhite), PorterDuff.Mode.SRC_ATOP);
+    public void setYellowColor() {
+        starDrawable.setColorFilter(ContextCompat.getColor(this, R.color.colorYellow), PorterDuff.Mode.SRC_ATOP);
     }
 
-    private void showMarkedSuccessfully() {
+    public void showMarkedSuccessfully() {
         Toast.makeText(this, getString(R.string.successfully_marked), Toast.LENGTH_SHORT).show();
     }
 
-    private void showRemovedSuccessfully() {
+    public void showRemovedSuccessfully() {
         Toast.makeText(this, getString(R.string.successfully_removed), Toast.LENGTH_SHORT).show();
     }
 }

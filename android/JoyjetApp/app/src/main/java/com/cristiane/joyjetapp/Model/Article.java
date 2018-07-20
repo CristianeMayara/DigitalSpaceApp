@@ -66,6 +66,33 @@ public class Article implements Parcelable {
         return this.isFavorite;
     }
 
+    public boolean equals(Article obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        if ((this.title.equals(obj.title)) &&
+                (isGaleryEquals(obj.galery)) &&
+                (this.category == obj.category) &&
+                (this.isFavorite == obj.isFavorite) &&
+                (this.description.equals(obj.description)))
+            return true;
+        return false;
+    }
+
+    private boolean isGaleryEquals(List<String> galery) {
+        if (galery.size() != this.galery.size())
+            return false;
+
+        for (int i = 0; i < galery.size(); i++) {
+            if (!galery.get(i).equals(this.galery.get(i)))
+                return false;
+        }
+        return true;
+    }
+
     @Override
     public int describeContents() {
         return 0;
