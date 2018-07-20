@@ -61,7 +61,7 @@ public class FavoriteListFragment extends Fragment {
     }
 
     /*private void updateAdapter() {
-        //ArrayList<Article> data = BaseActivity.dataUtil.getFavorites();
+        //ArrayList<Article> data = BaseActivity.dataUtil.findAllFavorites();
         adapter = new FavoriteListAdapter(getContext(), data);
         rvFavoriteList.setAdapter(adapter);
         adapter.notifyDataSetChanged();

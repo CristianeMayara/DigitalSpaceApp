@@ -26,7 +26,6 @@ public class CategoryListViewModel extends ViewModel {
     public MutableLiveData<ArrayList<ArticleTypeItem>> data = new MutableLiveData<>();
 
     public CategoryListViewModel() {
-        //findAllCategories();
     }
 
     public LiveData<ArrayList<ArticleTypeItem>> getData() {
