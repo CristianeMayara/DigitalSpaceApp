@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.cristiane.joyjetapp.Fragments.CategoryListFragment">
+    tools:context=".ui.fragments.CategoryListFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_favorite_list"

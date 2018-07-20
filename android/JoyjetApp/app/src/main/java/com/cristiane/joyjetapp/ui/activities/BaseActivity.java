@@ -1,4 +1,4 @@
-package com.cristiane.joyjetapp.Activities;
+package com.cristiane.joyjetapp.ui.activities;
 
 import android.graphics.Typeface;
 import android.os.Build;
@@ -17,11 +17,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.cristiane.joyjetapp.Fragments.CategoryListFragment;
-import com.cristiane.joyjetapp.Fragments.FavoriteListFragment;
-import com.cristiane.joyjetapp.Model.ArticleTypeItem;
+import com.cristiane.joyjetapp.ui.fragments.CategoryListFragment;
+import com.cristiane.joyjetapp.ui.fragments.FavoriteListFragment;
+import com.cristiane.joyjetapp.model.ArticleTypeItem;
 import com.cristiane.joyjetapp.R;
-import com.cristiane.joyjetapp.Util.DataUtil;
 
 import java.util.ArrayList;
 

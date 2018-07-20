@@ -5,8 +5,8 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.support.annotation.NonNull;
 
-import com.cristiane.joyjetapp.Model.ArticleTypeItem;
-import com.cristiane.joyjetapp.Model.Category;
+import com.cristiane.joyjetapp.model.ArticleTypeItem;
+import com.cristiane.joyjetapp.model.Category;
 import com.cristiane.joyjetapp.api.ArticleService;
 import com.cristiane.joyjetapp.api.RetrofitInitializer;
 

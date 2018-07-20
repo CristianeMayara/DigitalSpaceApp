@@ -1,4 +1,4 @@
-package com.cristiane.joyjetapp.Fragments;
+package com.cristiane.joyjetapp.ui.fragments;
 
 import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.LifecycleRegistryOwner;
@@ -15,8 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.cristiane.joyjetapp.Adapters.FavoriteListAdapter;
-import com.cristiane.joyjetapp.Model.Article;
+import com.cristiane.joyjetapp.ui.adapters.FavoriteListAdapter;
+import com.cristiane.joyjetapp.model.Article;
 import com.cristiane.joyjetapp.R;
 import com.cristiane.joyjetapp.viewmodel.FavoriteListViewModel;
 

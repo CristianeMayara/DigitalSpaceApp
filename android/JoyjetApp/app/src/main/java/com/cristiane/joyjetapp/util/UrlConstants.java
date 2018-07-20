@@ -1,4 +1,4 @@
-package com.cristiane.joyjetapp.Util;
+package com.cristiane.joyjetapp.util;
 
 /**
  * Created by cristiane on 18/07/2018.

@@ -1,4 +1,4 @@
-package com.cristiane.joyjetapp.Util;
+package com.cristiane.joyjetapp.util;
 
 import android.content.Context;
 import android.graphics.Typeface;

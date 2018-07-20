@@ -1,11 +1,11 @@
-package com.cristiane.joyjetapp.Util;
+package com.cristiane.joyjetapp.util;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import com.cristiane.joyjetapp.Model.Article;
-import com.cristiane.joyjetapp.Model.ArticleTypeItem;
-import com.cristiane.joyjetapp.Model.Category;
+import com.cristiane.joyjetapp.model.Article;
+import com.cristiane.joyjetapp.model.ArticleTypeItem;
+import com.cristiane.joyjetapp.model.Category;
 import com.cristiane.joyjetapp.api.ArticleService;
 import com.cristiane.joyjetapp.api.RetrofitInitializer;
 

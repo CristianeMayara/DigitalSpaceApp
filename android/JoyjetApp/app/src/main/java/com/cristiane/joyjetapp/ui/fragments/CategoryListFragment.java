@@ -1,4 +1,4 @@
-package com.cristiane.joyjetapp.Fragments;
+package com.cristiane.joyjetapp.ui.fragments;
 
 import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.LifecycleRegistryOwner;
@@ -15,9 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.cristiane.joyjetapp.Activities.BaseActivity;
-import com.cristiane.joyjetapp.Adapters.CategoryListAdapter;
-import com.cristiane.joyjetapp.Model.ArticleTypeItem;
+import com.cristiane.joyjetapp.ui.activities.BaseActivity;
+import com.cristiane.joyjetapp.ui.adapters.CategoryListAdapter;
+import com.cristiane.joyjetapp.model.ArticleTypeItem;
 import com.cristiane.joyjetapp.R;
 import com.cristiane.joyjetapp.viewmodel.CategoryListViewModel;
 

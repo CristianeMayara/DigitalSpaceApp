@@ -1,4 +1,4 @@
-package com.cristiane.joyjetapp.Adapters;
+package com.cristiane.joyjetapp.ui.adapters;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -9,12 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.cristiane.joyjetapp.Model.Article;
-import com.cristiane.joyjetapp.Model.ArticleTypeItem;
+import com.cristiane.joyjetapp.model.ArticleTypeItem;
 import com.cristiane.joyjetapp.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by cristiane on 27/06/2018.

@@ -4,9 +4,9 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
-import com.cristiane.joyjetapp.Activities.BaseActivity;
-import com.cristiane.joyjetapp.Model.Article;
-import com.cristiane.joyjetapp.Model.ArticleTypeItem;
+import com.cristiane.joyjetapp.ui.activities.BaseActivity;
+import com.cristiane.joyjetapp.model.Article;
+import com.cristiane.joyjetapp.model.ArticleTypeItem;
 
 import java.util.ArrayList;
 

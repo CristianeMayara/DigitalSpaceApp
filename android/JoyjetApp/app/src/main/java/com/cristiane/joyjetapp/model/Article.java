@@ -1,4 +1,4 @@
-package com.cristiane.joyjetapp.Model;
+package com.cristiane.joyjetapp.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

@@ -1,4 +1,4 @@
-package com.cristiane.joyjetapp.Adapters;
+package com.cristiane.joyjetapp.ui.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,8 +16,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.cristiane.joyjetapp.Activities.ArticleActivity;
-import com.cristiane.joyjetapp.Model.Article;
+import com.cristiane.joyjetapp.ui.activities.ArticleActivity;
+import com.cristiane.joyjetapp.model.Article;
 import com.cristiane.joyjetapp.R;
 
 import java.util.List;

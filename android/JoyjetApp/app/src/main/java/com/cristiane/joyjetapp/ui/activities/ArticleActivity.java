@@ -1,4 +1,4 @@
-package com.cristiane.joyjetapp.Activities;
+package com.cristiane.joyjetapp.ui.activities;
 
 import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.LifecycleRegistryOwner;
@@ -21,10 +21,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.cristiane.joyjetapp.Model.Article;
+import com.cristiane.joyjetapp.model.Article;
 import com.cristiane.joyjetapp.R;
 import com.cristiane.joyjetapp.viewmodel.ArticleViewModel;
-import com.cristiane.joyjetapp.viewmodel.CategoryListViewModel;
 
 /**
  * Created by cristiane on 28/06/2018.
