@@ -4,14 +4,10 @@
     android:layout_height="@dimen/list_item_height"
     android:background="@color/colorWhite">
 
-    <ImageView
-        android:id="@+id/iv_item_image"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_item_gallery"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:scaleType="centerCrop"
-        android:contentDescription="@null"
-        android:src="@drawable/img_my_capsule" />
+        android:layout_height="match_parent" />
 
     <ImageView
         android:id="@+id/iv_item_left_arrow"

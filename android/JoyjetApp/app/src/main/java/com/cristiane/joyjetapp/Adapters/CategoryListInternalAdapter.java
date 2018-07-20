@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Typeface;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,8 +57,10 @@ public class CategoryListInternalAdapter extends RecyclerView.Adapter<CategoryLi
         if (articles.get(position) != null && articles.get(position).getDescription() != null)
             holder.tvSummary.setText(articles.get(position).getDescription());
 
-//        if (articles.get(position) != null && articles.get(position).getImageId() != 0)
-//            holder.ivImage.setImageResource(articles.get(position).getImageId());
+        if (articles.get(position) != null && articles.get(position).getGalery() != null) {
+            PagerAdapter vpAdapter = new ArticleViewPagerAdapter(context, articles.get(position).getGalery());
+            holder.vpGallery.setAdapter(vpAdapter);
+        }
 
     }
 
@@ -80,7 +84,7 @@ public class CategoryListInternalAdapter extends RecyclerView.Adapter<CategoryLi
         TextView tvSummary;
         ImageView ivLeftArrow;
         ImageView ivRightArrow;
-        ImageView ivImage;
+        ViewPager vpGallery;
         RelativeLayout rlMainLayout;
 
         ArticleViewHolder(View v) {
@@ -90,7 +94,7 @@ public class CategoryListInternalAdapter extends RecyclerView.Adapter<CategoryLi
             tvSummary = v.findViewById(R.id.tv_item_summary);
             ivLeftArrow = v.findViewById(R.id.iv_item_left_arrow);
             ivRightArrow = v.findViewById(R.id.iv_item_right_arrow);
-            ivImage = v.findViewById(R.id.iv_item_image);
+            vpGallery = v.findViewById(R.id.vp_item_gallery);
             rlMainLayout = v.findViewById(R.id.main_layout);
 
             Typeface tfLight = Typeface.createFromAsset(context.getAssets(), "fonts/Montserrat-Light.otf");
@@ -98,7 +102,7 @@ public class CategoryListInternalAdapter extends RecyclerView.Adapter<CategoryLi
             tvSummary.setTypeface(tfLight);
             tvTitle.setTypeface(tfSemiBold);
 
-            ivImage.setColorFilter(setDarknessToImage(60));
+            //ivImage.setColorFilter(setDarknessToImage(60));
         }
     }
 

@@ -11,6 +11,10 @@ import com.cristiane.joyjetapp.Model.ArticleTypeItem;
 
 import java.util.ArrayList;
 
+/**
+ * Created by cristiane on 19/07/2018.
+ */
+
 public class ArticleViewModel extends ViewModel {
 
     public MutableLiveData<Article> article = new MutableLiveData<>();
