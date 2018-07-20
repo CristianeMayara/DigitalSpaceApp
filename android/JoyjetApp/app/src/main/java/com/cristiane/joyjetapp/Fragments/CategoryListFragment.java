@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.cristiane.joyjetapp.Activities.BaseActivity;
 import com.cristiane.joyjetapp.Adapters.CategoryListAdapter;
 import com.cristiane.joyjetapp.Model.ArticleTypeItem;
 import com.cristiane.joyjetapp.R;
@@ -69,6 +70,9 @@ public class CategoryListFragment extends Fragment implements LifecycleRegistryO
         rvArticleList = rootView.findViewById(R.id.rv_category_list);
         rvArticleList.setLayoutManager(layoutManager);
         rvArticleList.setHasFixedSize(true);
+
+        if (BaseActivity.cache.isEmpty()) viewmodel.findAllCategories();
+        else updateAdapter(BaseActivity.cache);
     }
 
     private void initViewModel() {
@@ -81,6 +85,7 @@ public class CategoryListFragment extends Fragment implements LifecycleRegistryO
             @Override
             public void onChanged(@Nullable ArrayList<ArticleTypeItem> data) {
                 if (data != null) {
+                    BaseActivity.cache = data;
                     updateAdapter(data);
                 }
             }
@@ -88,8 +93,6 @@ public class CategoryListFragment extends Fragment implements LifecycleRegistryO
     }
 
     private void updateAdapter(ArrayList<ArticleTypeItem> data) {
-        //ArrayList<ArticleTypeItem> data = BaseActivity.dataUtil.data;
-
         adapter = new CategoryListAdapter(getContext(), data);
         rvArticleList.setAdapter(adapter);
         adapter.notifyDataSetChanged();

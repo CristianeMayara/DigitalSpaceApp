@@ -23,11 +23,10 @@ public class CategoryListViewModel extends ViewModel {
 
     public ArrayList<Category> categories;
 
-
     public MutableLiveData<ArrayList<ArticleTypeItem>> data = new MutableLiveData<>();
 
     public CategoryListViewModel() {
-        findAllCategories();
+        //findAllCategories();
     }
 
     public LiveData<ArrayList<ArticleTypeItem>> getData() {
@@ -55,7 +54,7 @@ public class CategoryListViewModel extends ViewModel {
         return data;
     }
 
-    private void findAllCategories() {
+    public void findAllCategories() {
         retrofit2.Call<ArrayList<Category>> call = RetrofitInitializer.createService(ArticleService.class).getCategories();
         call.enqueue(new Callback<ArrayList<Category>>() {
             @Override

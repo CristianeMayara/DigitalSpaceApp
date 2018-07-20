@@ -49,7 +49,7 @@ public class FavoriteListFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        updateAdapter();
+        //updateAdapter();
     }
 
     private void initComponents(View rootView) {
@@ -60,8 +60,8 @@ public class FavoriteListFragment extends Fragment {
         rvFavoriteList.setHasFixedSize(true);
     }
 
-    private void updateAdapter() {
-        ArrayList<Article> data = BaseActivity.dataUtil.getFavorites();
+    /*private void updateAdapter() {
+        //ArrayList<Article> data = BaseActivity.dataUtil.getFavorites();
         adapter = new FavoriteListAdapter(getContext(), data);
         rvFavoriteList.setAdapter(adapter);
         adapter.notifyDataSetChanged();
@@ -70,5 +70,5 @@ public class FavoriteListFragment extends Fragment {
             rvFavoriteList.setVisibility(View.GONE);
             tvNoFavorites.setVisibility(View.VISIBLE);
         }
-    }
+    }*/
 }

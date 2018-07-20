@@ -3,6 +3,7 @@ package com.cristiane.joyjetapp.Activities;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
@@ -18,16 +19,20 @@ import android.widget.TextView;
 
 import com.cristiane.joyjetapp.Fragments.CategoryListFragment;
 import com.cristiane.joyjetapp.Fragments.FavoriteListFragment;
+import com.cristiane.joyjetapp.Model.ArticleTypeItem;
 import com.cristiane.joyjetapp.R;
 import com.cristiane.joyjetapp.Util.DataUtil;
+
+import java.util.ArrayList;
 
 public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final String TAG = BaseActivity.class.getSimpleName();
 
     private Toolbar toolbar;
-    DrawerLayout drawer;
-    public static DataUtil dataUtil;
+    public DrawerLayout drawer;
+
+    public static ArrayList<ArticleTypeItem> cache;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +41,12 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
         initComponents();
 
-        Fragment fragment = CategoryListFragment.newInstance();
-        commitFragment(fragment, CategoryListFragment.TAG);
+        commitFragment(CategoryListFragment.newInstance(), CategoryListFragment.TAG);
         getSupportActionBar().setTitle(getString(R.string.category_list_screen_title));
     }
 
     private void initComponents() {
-        dataUtil = new DataUtil(this);
+        cache = new ArrayList<>();
         setToolbar();
         setDrawerMenu();
     }
@@ -98,7 +102,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.nav_category) {
