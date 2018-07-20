@@ -27,10 +27,6 @@ public class FavoriteListViewModel extends ViewModel {
 
     public void findAllFavorites() {
         ArrayList<ArticleTypeItem> items = BaseActivity.cache;
-
-        if (items == null)
-            this.favorites.postValue(null);
-
         ArrayList<Article> favorites = new ArrayList<>();
 
         for (ArticleTypeItem i : items) {
