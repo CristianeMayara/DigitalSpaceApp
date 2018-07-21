@@ -4,24 +4,28 @@ import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.LifecycleRegistryOwner;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListAdapter;
+import android.widget.ExpandableListView;
 import android.widget.TextView;
 
+import com.cristiane.joyjetapp.model.Article;
 import com.cristiane.joyjetapp.ui.activities.BaseActivity;
-import com.cristiane.joyjetapp.ui.adapters.CategoryListAdapter;
 import com.cristiane.joyjetapp.model.ArticleTypeItem;
 import com.cristiane.joyjetapp.R;
+import com.cristiane.joyjetapp.ui.adapters.ExpCategoryListAdapter;
 import com.cristiane.joyjetapp.viewmodel.CategoryListViewModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by cristiane on 28/06/2018.
@@ -30,10 +34,10 @@ import java.util.ArrayList;
 public class CategoryListFragment extends Fragment implements LifecycleRegistryOwner {
 
     public static final String TAG = CategoryListFragment.class.getSimpleName();
-    private RecyclerView rvArticleList;
-    private CategoryListAdapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
+
     private TextView tvNoArticles;
+    private ExpandableListAdapter listAdapter;
+    private ExpandableListView elCategoryList;
 
     private CategoryListViewModel viewmodel;
     private final LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
@@ -65,14 +69,12 @@ public class CategoryListFragment extends Fragment implements LifecycleRegistryO
     }
 
     private void initComponents(View rootView) {
-        layoutManager = new LinearLayoutManager(getContext());
         tvNoArticles = rootView.findViewById(R.id.tv_no_articles);
-        rvArticleList = rootView.findViewById(R.id.rv_category_list);
-        rvArticleList.setLayoutManager(layoutManager);
-        rvArticleList.setHasFixedSize(true);
+        elCategoryList = rootView.findViewById(R.id.el_category_list);
 
-        if (BaseActivity.cache.isEmpty()) viewmodel.findAllCategories();
-        else updateAdapter(BaseActivity.cache);
+        if (BaseActivity.headerCache.isEmpty() || BaseActivity.childCache.isEmpty())
+            viewmodel.findAllCategories();
+        else updateExpAdapter(getContext(), BaseActivity.headerCache, BaseActivity.childCache);
     }
 
     private void initViewModel() {
@@ -85,20 +87,36 @@ public class CategoryListFragment extends Fragment implements LifecycleRegistryO
             @Override
             public void onChanged(@Nullable ArrayList<ArticleTypeItem> data) {
                 if (data != null) {
-                    BaseActivity.cache = data;
-                    updateAdapter(data);
+                    //BaseActivity.cache = data;
+                    //updateAdapter(data);
+                }
+            }
+        });
+        viewModel.getListDataHeader().observe(this, new Observer<List<String>>() {
+            @Override
+            public void onChanged(@Nullable List<String> data) {
+                if (data != null) {
+                    BaseActivity.headerCache = data;
+                }
+            }
+        });
+        viewModel.getListDataChild().observe(this, new Observer<HashMap<String, List<Article>>>() {
+            @Override
+            public void onChanged(@Nullable HashMap<String, List<Article>> data) {
+                if (data != null) {
+                    BaseActivity.childCache = data;
+                    updateExpAdapter(getContext(), BaseActivity.headerCache, data);
                 }
             }
         });
     }
 
-    private void updateAdapter(ArrayList<ArticleTypeItem> data) {
-        adapter = new CategoryListAdapter(getContext(), data);
-        rvArticleList.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+    private void updateExpAdapter(Context context, List<String> listDataHeader, HashMap<String, List<Article>> listDataChild) {
+        listAdapter = new ExpCategoryListAdapter(context, listDataHeader, listDataChild);
+        elCategoryList.setAdapter(listAdapter);
 
-        if (data == null || data.isEmpty()) {
-            rvArticleList.setVisibility(View.GONE);
+        if (listDataHeader == null || listDataHeader.isEmpty() || listDataChild == null || listDataChild.isEmpty()) {
+            elCategoryList.setVisibility(View.GONE);
             tvNoArticles.setVisibility(View.VISIBLE);
         }
     }

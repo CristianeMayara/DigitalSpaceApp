@@ -6,11 +6,19 @@
     android:orientation="vertical"
     tools:context=".ui.fragments.CategoryListFragment">
 
-    <android.support.v7.widget.RecyclerView
+    <!--android.support.v7.widget.RecyclerView
         android:id="@+id/rv_category_list"
         android:scrollbars="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"/-->
+
+    <ExpandableListView
+        android:id="@+id/el_category_list"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="0.5dp" />
 
     <TextView
         android:id="@+id/tv_no_articles"

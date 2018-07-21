@@ -17,12 +17,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.cristiane.joyjetapp.model.Article;
 import com.cristiane.joyjetapp.ui.fragments.CategoryListFragment;
 import com.cristiane.joyjetapp.ui.fragments.FavoriteListFragment;
 import com.cristiane.joyjetapp.model.ArticleTypeItem;
 import com.cristiane.joyjetapp.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -32,6 +35,9 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     public DrawerLayout drawer;
 
     public static ArrayList<ArticleTypeItem> cache;
+
+    public static List<String> headerCache;
+    public static HashMap<String, List<Article>> childCache;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +52,8 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
     private void initComponents() {
         cache = new ArrayList<>();
+        headerCache = new ArrayList<>();
+        childCache = new HashMap<>();
         setToolbar();
         setDrawerMenu();
     }
