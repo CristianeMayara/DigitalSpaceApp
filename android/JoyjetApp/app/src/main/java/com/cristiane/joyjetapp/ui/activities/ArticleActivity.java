@@ -24,6 +24,8 @@ import android.widget.Toast;
 import com.cristiane.joyjetapp.model.Article;
 import com.cristiane.joyjetapp.R;
 import com.cristiane.joyjetapp.viewmodel.ArticleViewModel;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by cristiane on 28/06/2018.
@@ -94,7 +96,19 @@ public class ArticleActivity extends AppCompatActivity implements LifecycleRegis
             tvTitle.setText(article.getTitle().toUpperCase());
             tvCategory.setText(getCategoryName(article.getCategory()).toLowerCase());
             tvText.setText(article.getDescription());
-//            ivImage.setImageResource(article.getImageId());
+
+            Picasso
+                .with(this)
+                .load(article.getGalery().get(0))
+                .into(ivImage, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                    }
+
+                    @Override
+                    public void onError() {
+                    }
+                });
         }
     }
 
