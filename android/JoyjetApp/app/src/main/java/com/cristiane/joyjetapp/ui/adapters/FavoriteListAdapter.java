@@ -80,7 +80,7 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
         TextView tvSummary;
         ImageView ivLeftArrow;
         ImageView ivRightArrow;
-        ImageView ivImage;
+        //ImageView ivImage;
         RelativeLayout rlMainLayout;
 
         ArticleViewHolder(View v) {
@@ -90,7 +90,7 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
             tvSummary = v.findViewById(R.id.tv_item_summary);
             ivLeftArrow = v.findViewById(R.id.iv_item_left_arrow);
             ivRightArrow = v.findViewById(R.id.iv_item_right_arrow);
-            ivImage = v.findViewById(R.id.iv_item_image);
+            //ivImage = v.findViewById(R.id.iv_item_image);
             rlMainLayout = v.findViewById(R.id.main_layout);
 
             Typeface tfLight = Typeface.createFromAsset(context.getAssets(), "fonts/Montserrat-Light.otf");
@@ -98,7 +98,7 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
             tvSummary.setTypeface(tfLight);
             tvTitle.setTypeface(tfSemiBold);
 
-            ivImage.setColorFilter(setDarknessToImage(60));
+            //ivImage.setColorFilter(setDarknessToImage(60));
         }
     }
 

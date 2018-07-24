@@ -7,9 +7,9 @@ import android.content.Context;
 import com.cristiane.joyjetapp.ui.activities.ArticleActivity;
 import com.cristiane.joyjetapp.ui.activities.BaseActivity;
 import com.cristiane.joyjetapp.model.Article;
-import com.cristiane.joyjetapp.model.ArticleTypeItem;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by cristiane on 19/07/2018.
@@ -26,17 +26,19 @@ public class ArticleViewModel extends ViewModel {
     }
 
     public void toggleFavorite(Context ctx, Article article) {
-        ArrayList<ArticleTypeItem> items = BaseActivity.cache;
+        List<String> listDataHeader = BaseActivity.headerCache;
+        HashMap<String, List<Article>> listDataChild = BaseActivity.childCache;
 
-        for (ArticleTypeItem i : items) {
-            if (i.getArticles() != null) {
-                for (Article a : i.getArticles()) {
+        for (String h : listDataHeader) {
+            if (listDataChild.get(h) != null) {
+
+                for (Article a : listDataChild.get(h)) {
 
                     if (a.equals(article)) {
                         a.setFavorite(!a.isFavorite());
 
                         article.setFavorite(!article.isFavorite());
-                        BaseActivity.cache = items;
+                        BaseActivity.childCache = listDataChild;
 
                         this.showFeedback(ctx, article);
                         this.updateColor(ctx, article);

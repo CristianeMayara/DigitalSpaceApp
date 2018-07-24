@@ -6,9 +6,10 @@ import android.arch.lifecycle.ViewModel;
 
 import com.cristiane.joyjetapp.ui.activities.BaseActivity;
 import com.cristiane.joyjetapp.model.Article;
-import com.cristiane.joyjetapp.model.ArticleTypeItem;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by cristiane on 19/07/2018.
@@ -26,15 +27,17 @@ public class FavoriteListViewModel extends ViewModel {
     }
 
     public void findAllFavorites() {
-        ArrayList<ArticleTypeItem> items = BaseActivity.cache;
+        List<String> listDataHeader = BaseActivity.headerCache;
+        HashMap<String, List<Article>> listDataChild = BaseActivity.childCache;
         ArrayList<Article> favorites = new ArrayList<>();
 
-        for (ArticleTypeItem i : items) {
-            if (i.getArticles() != null) {
-                for (Article e : i.getArticles()) {
+        for (String h : listDataHeader) {
+            if (listDataChild.get(h) != null) {
 
-                    if (e.isFavorite())
-                        favorites.add(e);
+                for (Article a : listDataChild.get(h)) {
+
+                    if (a.isFavorite())
+                        favorites.add(a);
                 }
             }
         }
