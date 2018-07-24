@@ -9,9 +9,7 @@
     <ExpandableListView
         android:id="@+id/el_category_list"
         android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:dividerHeight="0.1dp"
-        android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft" />
+        android:layout_width="match_parent" />
 
     <TextView
         android:id="@+id/tv_no_articles"

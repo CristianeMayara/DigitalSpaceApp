@@ -69,6 +69,10 @@ public class CategoryListFragment extends Fragment implements LifecycleRegistryO
     private void initComponents(View rootView) {
         tvNoArticles = rootView.findViewById(R.id.tv_no_articles);
         elCategoryList = rootView.findViewById(R.id.el_category_list);
+        elCategoryList.setGroupIndicator(null);
+        elCategoryList.setChildIndicator(null);
+        elCategoryList.setDivider(null);
+        elCategoryList.setDividerHeight(0);
 
         if (BaseActivity.headerCache.isEmpty() || BaseActivity.childCache.isEmpty())
             viewmodel.findAllCategories();
