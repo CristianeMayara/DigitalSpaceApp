@@ -20,6 +20,7 @@ import com.cristiane.joyjetapp.ui.activities.ArticleActivity;
 import com.cristiane.joyjetapp.model.Article;
 import com.cristiane.joyjetapp.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -58,7 +59,7 @@ public class CategoryListInternalAdapter extends RecyclerView.Adapter<CategoryLi
             holder.tvSummary.setText(articles.get(position).getDescription());
 
         if (articles.get(position) != null && articles.get(position).getGalery() != null) {
-            PagerAdapter vpAdapter = new ArticleViewPagerAdapter(context, articles.get(position).getGalery());
+            PagerAdapter vpAdapter = new ArticleViewPagerAdapter(context, articles.get(position).getGalery(), new Article("teste", "teste", new ArrayList<String>(), 1, true));
             holder.vpGallery.setAdapter(vpAdapter);
         }
 

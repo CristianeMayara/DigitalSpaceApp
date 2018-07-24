@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -90,6 +91,7 @@ public class ExpCategoryListAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.adapter_category_list_item, null);
         }
 
+        RelativeLayout rlMain = convertView.findViewById(R.id.main_layout);
         TextView tvTitle = convertView.findViewById(R.id.tv_item_title);
         tvTitle.setText(childArticle.getTitle());
         TextView tvSummary = convertView.findViewById(R.id.tv_item_summary);
@@ -97,7 +99,7 @@ public class ExpCategoryListAdapter extends BaseExpandableListAdapter {
         ImageView ivLeftArrow = convertView.findViewById(R.id.iv_item_left_arrow);
         ImageView ivRightArrow = convertView.findViewById(R.id.iv_item_right_arrow);
         ViewPager vpGallery = convertView.findViewById(R.id.vp_item_gallery);
-        PagerAdapter vpAdapter = new ArticleViewPagerAdapter(context, childArticle.getGalery());
+        PagerAdapter vpAdapter = new ArticleViewPagerAdapter(context, childArticle.getGalery(), childArticle);
         vpGallery.setAdapter(vpAdapter);
 
         return convertView;

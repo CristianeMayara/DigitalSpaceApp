@@ -77,6 +77,13 @@ public class CategoryListFragment extends Fragment implements LifecycleRegistryO
         else updateExpAdapter(getContext(), BaseActivity.headerCache, BaseActivity.childCache);
     }
 
+    public void expandAllGroups() {
+        int count = listAdapter.getGroupCount();
+        for (int i = 0; i < count; i++){
+            elCategoryList.expandGroup(i);
+        }
+    }
+
     private void initViewModel() {
         viewmodel = ViewModelProviders.of(this).get(CategoryListViewModel.class);
         attachObserver(viewmodel);
@@ -119,5 +126,6 @@ public class CategoryListFragment extends Fragment implements LifecycleRegistryO
             elCategoryList.setVisibility(View.GONE);
             tvNoArticles.setVisibility(View.VISIBLE);
         }
+        expandAllGroups();
     }
 }
