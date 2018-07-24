@@ -11,4 +11,14 @@
         android:scaleType="centerCrop"
         android:contentDescription="@null" />
 
+    <ProgressBar
+        android:id="@+id/pb_item_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="50dp"
+        android:minWidth="50dp"
+        android:visibility="gone"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

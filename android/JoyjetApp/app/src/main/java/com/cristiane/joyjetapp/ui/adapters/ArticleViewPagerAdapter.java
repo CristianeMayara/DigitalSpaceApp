@@ -10,8 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.cristiane.joyjetapp.R;
 import com.cristiane.joyjetapp.model.Article;
@@ -20,8 +20,6 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
-
-import static java.security.AccessController.getContext;
 
 /**
  * Created by cristiane on 20/07/2018.
@@ -66,12 +64,16 @@ public class ArticleViewPagerAdapter extends PagerAdapter {
         ImageView ivItemImage = view.findViewById(R.id.iv_item_image);
         ivItemImage.setColorFilter(setDarknessToImage(60));
 
+        final ProgressBar progressBar = view.findViewById(R.id.pb_item_loading);
+        progressBar.setVisibility(View.VISIBLE);
+
         Picasso
             .with(context)
             .load(galery.get(position))
             .into(ivItemImage, new Callback() {
                 @Override
                 public void onSuccess() {
+                    progressBar.setVisibility(View.GONE);
                 }
 
                 @Override
