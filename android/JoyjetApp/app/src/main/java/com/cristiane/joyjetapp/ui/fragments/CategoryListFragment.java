@@ -18,12 +18,10 @@ import android.widget.TextView;
 
 import com.cristiane.joyjetapp.model.Article;
 import com.cristiane.joyjetapp.ui.activities.BaseActivity;
-import com.cristiane.joyjetapp.model.ArticleTypeItem;
 import com.cristiane.joyjetapp.R;
 import com.cristiane.joyjetapp.ui.adapters.ExpCategoryListAdapter;
 import com.cristiane.joyjetapp.viewmodel.CategoryListViewModel;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -90,15 +88,6 @@ public class CategoryListFragment extends Fragment implements LifecycleRegistryO
     }
 
     private void attachObserver(CategoryListViewModel viewModel) {
-        viewModel.getData().observe(this, new Observer<ArrayList<ArticleTypeItem>>() {
-            @Override
-            public void onChanged(@Nullable ArrayList<ArticleTypeItem> data) {
-                if (data != null) {
-                    //BaseActivity.cache = data;
-                    //updateAdapter(data);
-                }
-            }
-        });
         viewModel.getListDataHeader().observe(this, new Observer<List<String>>() {
             @Override
             public void onChanged(@Nullable List<String> data) {

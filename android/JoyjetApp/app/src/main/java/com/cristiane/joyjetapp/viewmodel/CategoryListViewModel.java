@@ -26,12 +26,9 @@ public class CategoryListViewModel extends ViewModel {
 
     public ArrayList<Category> categories;
 
-
     public MutableLiveData<List<String>> listDataHeader = new MutableLiveData<>();
 
     public MutableLiveData<HashMap<String, List<Article>>> listDataChild = new MutableLiveData<>();
-
-    public MutableLiveData<ArrayList<ArticleTypeItem>> data = new MutableLiveData<>();
 
     public CategoryListViewModel() {
     }
@@ -42,10 +39,6 @@ public class CategoryListViewModel extends ViewModel {
 
     public MutableLiveData<HashMap<String, List<Article>>> getListDataChild() {
         return listDataChild;
-    }
-
-    public LiveData<ArrayList<ArticleTypeItem>> getData() {
-        return data;
     }
 
     public ArrayList<Category> getCategories() {
@@ -71,19 +64,6 @@ public class CategoryListViewModel extends ViewModel {
         this.listDataChild.postValue(listDataChild);
     }
 
-    /*private ArrayList<ArticleTypeItem> getArticleListItems() {
-        ArrayList<ArticleTypeItem> data = new ArrayList<>();
-
-        for (Category c : categories) {
-            data.add(new ArticleTypeItem(c.getCategory(), ArticleTypeItem.Type.TITLE));
-
-            if (c.getItems() != null) {
-                data.add(new ArticleTypeItem(c.getItems(), ArticleTypeItem.Type.CONTENT));
-            }
-        }
-        return data;
-    }*/
-
     public void findAllCategories() {
         retrofit2.Call<ArrayList<Category>> call = RetrofitInitializer.createService(ArticleService.class).getCategories();
         call.enqueue(new Callback<ArrayList<Category>>() {
@@ -91,12 +71,10 @@ public class CategoryListViewModel extends ViewModel {
             public void onResponse(@NonNull retrofit2.Call<ArrayList<Category>> call, @NonNull Response<ArrayList<Category>> response) {
                 if (response.isSuccessful()) {
                     categories = response.body();
-                    //data.postValue(getArticleListItems());
                     if (categories != null) buildData(categories);
 
                 } else {
                     categories = null;
-                    //data.postValue(null);
                     listDataChild.postValue(null);
                 }
             }
@@ -104,7 +82,6 @@ public class CategoryListViewModel extends ViewModel {
             @Override
             public void onFailure(@NonNull retrofit2.Call<ArrayList<Category>> call, @NonNull Throwable t) {
                 categories = null;
-                //data.postValue(null);
                 listDataChild.postValue(null);
             }
         });

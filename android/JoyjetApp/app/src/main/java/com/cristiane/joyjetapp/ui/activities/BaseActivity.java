@@ -34,8 +34,6 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar toolbar;
     public DrawerLayout drawer;
 
-    public static ArrayList<ArticleTypeItem> cache;
-
     public static List<String> headerCache;
     public static HashMap<String, List<Article>> childCache;
 
@@ -51,7 +49,6 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void initComponents() {
-        cache = new ArrayList<>();
         headerCache = new ArrayList<>();
         childCache = new HashMap<>();
         setToolbar();
@@ -78,7 +75,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         }
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorWhite));
+            //getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorWhite));
             getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorTransparent));
         }
     }

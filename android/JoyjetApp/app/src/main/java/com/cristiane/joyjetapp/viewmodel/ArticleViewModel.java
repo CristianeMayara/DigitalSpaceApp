@@ -19,8 +19,6 @@ public class ArticleViewModel extends ViewModel {
 
     public MutableLiveData<Article> article = new MutableLiveData<>();
 
-    //public MutableLiveData<Category> category = new MutableLiveData<>();
-
     public MutableLiveData<Article> getArticle() {
         return article;
     }

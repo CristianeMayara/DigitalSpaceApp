@@ -17,7 +17,6 @@ import com.cristiane.joyjetapp.ui.activities.ArticleActivity;
 import com.cristiane.joyjetapp.model.Article;
 import com.cristiane.joyjetapp.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,7 +25,7 @@ import java.util.List;
 
 public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapter.ArticleViewHolder> implements View.OnClickListener {
 
-    public static final String TAG = "CategoryListInternalAdapter";
+    public static final String TAG = "FavoriteListAdapter";
     private List<Article> articles;
     private Context context;
     private LayoutInflater mLayoutInflater;
