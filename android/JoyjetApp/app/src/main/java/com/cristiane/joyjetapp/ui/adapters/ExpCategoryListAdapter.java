@@ -1,6 +1,7 @@
 package com.cristiane.joyjetapp.ui.adapters;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -76,8 +77,11 @@ public class ExpCategoryListAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.adapter_category_list_item_title, null);
         }
 
-        TextView lblListHeader = convertView.findViewById(R.id.tv_category_title);
-        lblListHeader.setText(headerTitle);
+        TextView tvCategoryTitle = convertView.findViewById(R.id.tv_category_title);
+        tvCategoryTitle.setText(headerTitle.toLowerCase());
+
+        Typeface font = Typeface.createFromAsset(context.getAssets(), "fonts/Montserrat-Medium.otf");
+        tvCategoryTitle.setTypeface(font);
 
         return convertView;
     }
@@ -101,6 +105,11 @@ public class ExpCategoryListAdapter extends BaseExpandableListAdapter {
         ViewPager vpGallery = convertView.findViewById(R.id.vp_item_gallery);
         PagerAdapter vpAdapter = new ArticleViewPagerAdapter(context, childArticle.getGalery(), childArticle);
         vpGallery.setAdapter(vpAdapter);
+
+        Typeface tfLight = Typeface.createFromAsset(context.getAssets(), "fonts/Montserrat-Light.otf");
+        Typeface tfSemiBold = Typeface.createFromAsset(context.getAssets(), "fonts/Montserrat-SemiBold.otf");
+        tvSummary.setTypeface(tfLight);
+        tvTitle.setTypeface(tfSemiBold);
 
         return convertView;
     }
