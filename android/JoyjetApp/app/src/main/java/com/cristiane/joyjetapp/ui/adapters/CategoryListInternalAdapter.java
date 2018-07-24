@@ -2,9 +2,6 @@ package com.cristiane.joyjetapp.ui.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.Typeface;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -102,13 +99,6 @@ public class CategoryListInternalAdapter extends RecyclerView.Adapter<CategoryLi
             Typeface tfSemiBold = Typeface.createFromAsset(context.getAssets(), "fonts/Montserrat-SemiBold.otf");
             tvSummary.setTypeface(tfLight);
             tvTitle.setTypeface(tfSemiBold);
-
-            //ivImage.setColorFilter(setDarknessToImage(60));
         }
-    }
-
-    private PorterDuffColorFilter setDarknessToImage(int percentage) {
-        int value = (100 - percentage) * 255 / 100;
-        return new PorterDuffColorFilter(Color.argb(value, 0, 0, 0), PorterDuff.Mode.SRC_ATOP);
     }
 }

@@ -2,10 +2,9 @@ package com.cristiane.joyjetapp.ui.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.Typeface;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +17,7 @@ import com.cristiane.joyjetapp.ui.activities.ArticleActivity;
 import com.cristiane.joyjetapp.model.Article;
 import com.cristiane.joyjetapp.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -55,9 +55,10 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
         if (articles.get(position) != null && articles.get(position).getDescription() != null)
             holder.tvSummary.setText(articles.get(position).getDescription());
 
-//        if (articles.get(position) != null && articles.get(position).getImageId() != 0)
-//            holder.ivImage.setImageResource(articles.get(position).getImageId());
-
+        if (articles.get(position) != null && articles.get(position).getGalery() != null) {
+            PagerAdapter vpAdapter = new ArticleViewPagerAdapter(context, articles.get(position).getGalery(), articles.get(position));
+            holder.vpGallery.setAdapter(vpAdapter);
+        }
     }
 
     @Override
@@ -80,7 +81,7 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
         TextView tvSummary;
         ImageView ivLeftArrow;
         ImageView ivRightArrow;
-        //ImageView ivImage;
+        ViewPager vpGallery;
         RelativeLayout rlMainLayout;
 
         ArticleViewHolder(View v) {
@@ -90,20 +91,13 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
             tvSummary = v.findViewById(R.id.tv_item_summary);
             ivLeftArrow = v.findViewById(R.id.iv_item_left_arrow);
             ivRightArrow = v.findViewById(R.id.iv_item_right_arrow);
-            //ivImage = v.findViewById(R.id.iv_item_image);
+            vpGallery = v.findViewById(R.id.vp_item_gallery);
             rlMainLayout = v.findViewById(R.id.main_layout);
 
             Typeface tfLight = Typeface.createFromAsset(context.getAssets(), "fonts/Montserrat-Light.otf");
             Typeface tfSemiBold = Typeface.createFromAsset(context.getAssets(), "fonts/Montserrat-SemiBold.otf");
             tvSummary.setTypeface(tfLight);
             tvTitle.setTypeface(tfSemiBold);
-
-            //ivImage.setColorFilter(setDarknessToImage(60));
         }
-    }
-
-    private PorterDuffColorFilter setDarknessToImage(int percentage) {
-        int value = (100 - percentage) * 255 / 100;
-        return new PorterDuffColorFilter(Color.argb(value, 0, 0, 0), PorterDuff.Mode.SRC_ATOP);
     }
 }
