@@ -3,6 +3,7 @@ package com.cristiane.joyjetapp.ui.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
@@ -10,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cristiane.joyjetapp.ui.activities.ArticleActivity;
@@ -45,8 +45,8 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
 
     @Override
     public void onBindViewHolder(ArticleViewHolder holder, int position) {
-        holder.rlMainLayout.setOnClickListener(this);
-        holder.rlMainLayout.setId(position);
+        holder.clMainLayout.setOnClickListener(this);
+        holder.clMainLayout.setId(position);
 
         if (articles.get(position) != null && articles.get(position).getTitle() != null)
             holder.tvTitle.setText(articles.get(position).getTitle());
@@ -81,7 +81,7 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
         ImageView ivLeftArrow;
         ImageView ivRightArrow;
         ViewPager vpGallery;
-        RelativeLayout rlMainLayout;
+        ConstraintLayout clMainLayout;
 
         ArticleViewHolder(View v) {
             super(v);
@@ -91,7 +91,7 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
             ivLeftArrow = v.findViewById(R.id.iv_item_left_arrow);
             ivRightArrow = v.findViewById(R.id.iv_item_right_arrow);
             vpGallery = v.findViewById(R.id.vp_item_gallery);
-            rlMainLayout = v.findViewById(R.id.main_layout);
+            clMainLayout = v.findViewById(R.id.main_layout);
 
             Typeface tfLight = Typeface.createFromAsset(context.getAssets(), "fonts/Montserrat-Light.otf");
             Typeface tfSemiBold = Typeface.createFromAsset(context.getAssets(), "fonts/Montserrat-SemiBold.otf");

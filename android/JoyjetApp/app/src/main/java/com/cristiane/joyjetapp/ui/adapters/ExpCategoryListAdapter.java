@@ -2,6 +2,7 @@ package com.cristiane.joyjetapp.ui.adapters;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -9,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -95,7 +95,7 @@ public class ExpCategoryListAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.adapter_category_list_item, null);
         }
 
-        RelativeLayout rlMain = convertView.findViewById(R.id.main_layout);
+        ConstraintLayout clMainLayout = convertView.findViewById(R.id.main_layout);
         TextView tvTitle = convertView.findViewById(R.id.tv_item_title);
         tvTitle.setText(childArticle.getTitle());
         TextView tvSummary = convertView.findViewById(R.id.tv_item_summary);
