@@ -1,11 +1,14 @@
 package com.cristiane.joyjetapp.ui.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,20 +55,22 @@ public class ArticleViewPagerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.viewpager_item_gallery, container, false);
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(context, ArticleActivity.class);
-                i.putExtra(ArticleActivity.ARG_ARTICLE, article);
-                context.startActivity(i);
-            }
-        });
 
-        ImageView ivItemImage = view.findViewById(R.id.iv_item_image);
+        final ImageView ivItemImage = view.findViewById(R.id.iv_item_image);
         ivItemImage.setColorFilter(setDarknessToImage(60));
 
         final ProgressBar progressBar = view.findViewById(R.id.pb_item_loading);
         progressBar.setVisibility(View.VISIBLE);
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, ivItemImage, ViewCompat.getTransitionName(ivItemImage));
+                Intent i = new Intent(context, ArticleActivity.class);
+                i.putExtra(ArticleActivity.ARG_ARTICLE, article);
+                context.startActivity(i, options.toBundle());
+            }
+        });
 
         Picasso
             .with(context)
