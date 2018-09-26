@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/JoyjetApp.iml" filepath="$PROJECT_DIR$/JoyjetApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/joyjet-tech-interview-cristiane.iml" filepath="$PROJECT_DIR$/joyjet-tech-interview-cristiane.iml" />
     </modules>
   </component>
 </project>
